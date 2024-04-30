@@ -4,20 +4,25 @@ from dash import dcc
 import plotly.express as px
 import pandas as pd
 
+# Useful Dash Documentation
+#   https://plotly.com/python/plotly-express
+#   https://plotly.com/python/dash-html-components
+#   https://plotly.com/python/dash-core-components
+
 # Read in data
-data = pd.read_csv("precious_metals_prices_2018_2021.csv", usecols=["DateTime", "Gold"])
+data = pd.read_csv('precious_metals_prices_2018_2021.csv', usecols=['DateTime', 'Gold'])
 
 # Create a plotly figure for use by dcc.Graph()
 fig = px.line(data, x="DateTime", y="Gold", title="Precious Metal Prices 2018-2021")
 
 app = dash.Dash(__name__)
-app.title = "Precious Metal Prices 2018-2021"
+app.title = 'Precious Metal Prices 2018-2021'
 
 app.layout = html.Div(
     id="app-container",
     children=[
-        html.H1("Precious Metal Prices 2018-2021"),
-        html.P("Results in USD/oz"),
+        html.H1('Precious Metal Prices 2018-2021'),
+        html.P('Results in USD/oz'),
         dcc.Graph(figure=fig)
     ]
 )
